@@ -1,16 +1,17 @@
 package Models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SportEvent {
     private String title;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private List<Bet> bets;
 
-    public SportEvent(String title, LocalDateTime startDate, LocalDateTime endDate) {
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public SportEvent(){
+        this.bets = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -23,5 +24,10 @@ public class SportEvent {
 
     public LocalDateTime getEndDate() {
         return endDate;
+    }
+
+    public void addBetToList(Bet bet){
+        bet.setSportEvent(this);
+        bets.add(bet);
     }
 }
