@@ -1,4 +1,4 @@
-package Models;
+package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,21 +9,10 @@ public class SportEvent {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private List<Bet> bets;
+    private Result result;
 
     public SportEvent(){
-        this.bets = new ArrayList<>();
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
+        this.bets = new ArrayList<Bet>();
     }
 
     public void addBetToList(Bet bet){

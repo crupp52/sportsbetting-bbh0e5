@@ -1,4 +1,4 @@
-package Models;
+package model;
 
 public enum BetType {
     WINNER,

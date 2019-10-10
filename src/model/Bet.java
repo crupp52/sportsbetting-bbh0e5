@@ -1,4 +1,4 @@
-package Models;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Bet {
     private BetType betType;
 
     public Bet() {
-        this.outcomes = new ArrayList<>();
+        this.outcomes = new ArrayList<Outcome>();
     }
 
     public String getDescription() {
