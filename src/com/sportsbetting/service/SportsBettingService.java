@@ -31,6 +31,7 @@ public class SportsBettingService {
     }
 
     public void Inizialize(){
+        this.sportEvents.add(new SportEvent("Test Match"));
     }
 
     public void SavePlayer(Player player) {

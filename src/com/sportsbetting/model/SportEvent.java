@@ -13,7 +13,7 @@ public class SportEvent {
 
     public SportEvent(String title) {
         this.title = title;
-        this.bets = new ArrayList<Bet>();
+        this.bets = new ArrayList<>();
     }
 
     public void addBetToList(Bet bet) {
