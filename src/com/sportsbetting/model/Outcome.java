@@ -1,4 +1,4 @@
-package model;
+package com.sportsbetting.model;
 
 import java.util.List;
 
@@ -18,5 +18,13 @@ public class Outcome {
     public void addOutcomeOddToList(OutcomeOdd outcomeOdd) {
         outcomeOdd.setOutcome(this);
         this.outcomeOdds.add(outcomeOdd);
+    }
+
+    public Bet getBet() {
+        return bet;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

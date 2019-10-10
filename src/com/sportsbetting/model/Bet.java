@@ -1,4 +1,4 @@
-package com.model;
+package com.sportsbetting.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +41,10 @@ public class Bet {
 
     public BetType getBetType() {
         return betType;
+    }
+
+    @Override
+    public String toString() {
+        return "Bet: "+this.betType.toString();
     }
 }

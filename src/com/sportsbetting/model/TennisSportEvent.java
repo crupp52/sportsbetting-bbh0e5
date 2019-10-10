@@ -1,9 +1,7 @@
-package com.model;
-
-import java.time.LocalDateTime;
+package com.sportsbetting.model;
 
 public class TennisSportEvent extends SportEvent {
-    public TennisSportEvent(String title, LocalDateTime startDate, LocalDateTime endDate) {
-        super(title, startDate, endDate);
+    public TennisSportEvent(String title) {
+        super(title);
     }
 }

@@ -1,4 +1,4 @@
-package com.model;
+package com.sportsbetting.model;
 
 public class User {
     private String email;
