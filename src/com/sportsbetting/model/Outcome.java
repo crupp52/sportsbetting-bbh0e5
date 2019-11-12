@@ -1,5 +1,6 @@
 package com.sportsbetting.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Outcome {
@@ -7,12 +8,17 @@ public class Outcome {
     private Bet bet;
     private List<OutcomeOdd> outcomeOdds;
 
-    public Outcome(){
-
+    public Outcome(String description) {
+        this.description = description;
+        this.outcomeOdds = new ArrayList<>();
     }
 
     public void setBet(Bet bet) {
         this.bet = bet;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void addOutcomeOddToList(OutcomeOdd outcomeOdd) {
@@ -26,5 +32,14 @@ public class Outcome {
 
     public String getDescription() {
         return description;
+    }
+
+    public List<OutcomeOdd> getOutcomeOdds() {
+        return this.outcomeOdds;
+    }
+
+    @Override
+    public String toString() {
+        return "Outcome: " + description;
     }
 }

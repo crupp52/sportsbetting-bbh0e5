@@ -22,10 +22,30 @@ public class OutcomeOdd {
 
     @Override
     public String toString() {
-        return this.outcome.toString();
+        return "Actual odd: " + value + ", Valid between " + validFrom.toString() + " and " + validUntil.toString() + ".";
     }
 
     public BigDecimal getValue() {
         return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    public LocalDateTime getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(LocalDateTime validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    public LocalDateTime getValidUntil() {
+        return validUntil;
+    }
+
+    public void setValidUntil(LocalDateTime validUntil) {
+        this.validUntil = validUntil;
     }
 }

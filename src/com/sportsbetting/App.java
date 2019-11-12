@@ -1,13 +1,13 @@
 package com.sportsbetting;
 
 import com.sportsbetting.model.Player;
-import com.sportsbetting.model.SportEvent;
 import com.sportsbetting.model.Wager;
 import com.sportsbetting.service.SportsBettingService;
 import com.sportsbetting.view.View;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class App {
@@ -19,35 +19,36 @@ public class App {
     private SportsBettingService sportsBettingService;
     private View view;
 
-    public App(SportsBettingService sportsBettingService, View view) {
+    private App(SportsBettingService sportsBettingService, View view) {
         this.sportsBettingService = sportsBettingService;
         this.view = view;
     }
 
-    public void play() throws IOException {
-        this.createPlayer();
+    private void play() throws IOException {
+        createPlayer();
 
-        this.doBetting();
-        this.calculateResult();
-        this.printResult();
+        doBetting();
+        calculateResult();
+
+        printResult(sportsBettingService.findPlayer(), sportsBettingService.getWagers());
     }
 
     private void createPlayer() throws IOException {
-        Player p = this.view.readPlayer();
-        this.sportsBettingService.SavePlayer(p);
-        this.view.printWelcomeMessage(p);
-        this.view.printBalance(p);
+        Player p = view.readPlayer();
+        sportsBettingService.SavePlayer(p);
+        view.printWelcomeMessage(p);
+        view.printBalance(p);
     }
 
-    private void doBetting() {
-        this.view.printOutcomeOdds(this.sportsBettingService.getSportEvents());
+    private void doBetting() throws IOException {
+       view.printOutcomeOdds(sportsBettingService.getSportEvents());
     }
 
     private void calculateResult() {
-
+        sportsBettingService.calculateResult();
     }
 
-    private void printResult() {
-
+    private void printResult(Player player, List<Wager> wagers) {
+        view.printResult(player, wagers);
     }
 }

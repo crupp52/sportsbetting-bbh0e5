@@ -13,7 +13,6 @@ public class View {
     static Random rnd = new Random();
 
     public Player readPlayer() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Player player = new Player();
         System.out.println("What is your name?");
         player.setName(reader.readLine());
@@ -44,17 +43,75 @@ public class View {
     }
 
     public void printOutcomeOdds(List<SportEvent> sportEvents) {
-        for (SportEvent sportEvent : sportEvents) {
-            System.out.println(sportEvent.toString());
+        StringBuilder output = new StringBuilder();
+        output.append("What are you want to bet on? (choose a number or press q for quit)\n");
+        int i = 1;
+        for (SportEvent sportEvent :
+                sportEvents) {
+            for (Bet bet :
+                    sportEvent.getBets()
+            ) {
+                for (Outcome outcome :
+                        bet.getOutcomes()) {
+                    for (OutcomeOdd outcomeOdd :
+                            outcome.getOutcomeOdds()) {
+                        output.append("> ").append(i++).append(": ").append(sportEvent.toString()).append(", ").append(bet.toString()).append(", ").append(outcome.toString()).append(", ").append(outcomeOdd.toString()).append("\n");
+                    }
+                }
+            }
         }
+        System.out.println(output.toString());
     }
 
-    public OutcomeOdd selectOutcomeOdd(List<OutcomeOdd> outcomeOdds) {
-        return outcomeOdds.get(rnd.nextInt(outcomeOdds.size()));
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    public OutcomeOdd selectOutcomeOdd(List<SportEvent> sportEvents) throws IOException {
+
+        boolean end = false;
+
+        while (!end) {
+            printOutcomeOdds(sportEvents);
+            String input = reader.readLine();
+            if (input.equals("q")) {
+                end = true;
+            } else {
+                OutcomeOdd outcomeOdd = getOutcomeOdd(sportEvents, Integer.parseInt(input));
+                if (outcomeOdd != null) {
+                    return outcomeOdd;
+                }
+            }
+        }
+
+        return null;
     }
 
-    public BigDecimal readWagerAmount(Wager wager) {
-        return wager.getAmount();
+    private OutcomeOdd getOutcomeOdd(List<SportEvent> sportEvents, int index) {
+        int i = 1;
+        for (SportEvent sportEvent :
+                sportEvents) {
+            for (Bet bet :
+                    sportEvent.getBets()
+            ) {
+                for (Outcome outcome :
+                        bet.getOutcomes()) {
+                    for (OutcomeOdd outcomeOdd :
+                            outcome.getOutcomeOdds()) {
+                        if (i == index) {
+                            return outcomeOdd;
+                        } else {
+                            i++;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public BigDecimal readWagerAmount() throws IOException {
+        System.out.println("> What amount do you wish to bet on it?");
+        return BigDecimal.valueOf(Long.parseLong(reader.readLine()));
     }
 
     public void printWagerSaved(Wager wager) {

@@ -10,8 +10,10 @@ public class Bet {
     private SportEvent sportEvent;
     private BetType betType;
 
-    public Bet() {
-        this.outcomes = new ArrayList<Outcome>();
+    public Bet(BetType betType) {
+        this.betType = betType;
+
+        this.outcomes = new ArrayList<>();
     }
 
     public String getDescription() {
@@ -45,6 +47,10 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "Bet: "+this.betType.toString();
+        return "Bet: " + betType.toString() + " " + description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
