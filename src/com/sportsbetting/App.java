@@ -1,5 +1,6 @@
 package com.sportsbetting;
 
+import com.sportsbetting.model.OutcomeOdd;
 import com.sportsbetting.model.Player;
 import com.sportsbetting.model.Wager;
 import com.sportsbetting.service.SportsBettingService;
@@ -11,6 +12,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class App {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws IOException {
         App app = new App(new SportsBettingService(), new View());
         app.play();
@@ -41,7 +44,17 @@ public class App {
     }
 
     private void doBetting() throws IOException {
-       view.printOutcomeOdds(sportsBettingService.getSportEvents());
+        do {
+            OutcomeOdd outcomeOdd = view.selectOutcomeOdd(sportsBettingService.getSportEvents());
+            if (outcomeOdd != null) {
+                Wager wager = new Wager(view.readWagerAmount(), sportsBettingService.findPlayer(), outcomeOdd);
+                if (sportsBettingService.saveWager(wager)) {
+                    view.printWagerSaved(wager);
+                } else {
+                    view.printNotEnoughBalance(sportsBettingService.findPlayer());
+                }
+            }
+        } while (!reader.readLine().equals("q"));
     }
 
     private void calculateResult() {

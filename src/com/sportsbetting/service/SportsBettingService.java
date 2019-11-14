@@ -2,16 +2,18 @@ package com.sportsbetting.service;
 
 import com.sportsbetting.model.*;
 
-import javax.sound.sampled.FloatControl;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SportsBettingService {
     private List<Player> players;
     private List<SportEvent> sportEvents;
     private List<Wager> wagers;
+
+    Random rnd = new Random();
 
     public SportsBettingService() {
         this.players = new ArrayList<>();
@@ -86,16 +88,43 @@ public class SportsBettingService {
         return this.sportEvents;
     }
 
-    public void saveWager(Wager wager) {
-        this.wagers.add(wager);
+    public boolean saveWager(Wager wager) {
+        BigDecimal tempPlayerBalance = findPlayer().getBalance();
+        BigDecimal wagerAmount = wager.getAmount();
+
+        if (tempPlayerBalance.max(wagerAmount).equals(tempPlayerBalance)) {
+            findPlayer().subtractValue(wagerAmount);
+            this.wagers.add(wager);
+
+            return true;
+        }
+
+        return false;
     }
 
     public List<Wager> findAllWagers() {
         return this.wagers;
     }
 
-    public void calculateResult() {
+    private void generateResult() {
+        for (Wager wager :
+                wagers) {
+            if (rnd.nextInt(3) == 1) {
+                wager.setWin(true);
+            }
+        }
+    }
 
+    public void calculateResult() {
+        BigDecimal winValue = BigDecimal.valueOf(0);
+
+        for (Wager wager : wagers) {
+            if (wager.isWin()) {
+                winValue = winValue.add(wager.getAmount().multiply(wager.getOutcomeOdd().getValue()));
+            }
+        }
+
+        findPlayer().setBalance(winValue.add(findPlayer().getBalance()));
     }
 
     @Override

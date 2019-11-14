@@ -7,11 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Random;
 
 public class View {
-    static Random rnd = new Random();
-
     public Player readPlayer() throws IOException {
         Player player = new Player();
         System.out.println("What is your name?");
@@ -66,23 +63,8 @@ public class View {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public OutcomeOdd selectOutcomeOdd(List<SportEvent> sportEvents) throws IOException {
-
-        boolean end = false;
-
-        while (!end) {
-            printOutcomeOdds(sportEvents);
-            String input = reader.readLine();
-            if (input.equals("q")) {
-                end = true;
-            } else {
-                OutcomeOdd outcomeOdd = getOutcomeOdd(sportEvents, Integer.parseInt(input));
-                if (outcomeOdd != null) {
-                    return outcomeOdd;
-                }
-            }
-        }
-
-        return null;
+        printOutcomeOdds(sportEvents);
+        return getOutcomeOdd(sportEvents, Integer.parseInt(reader.readLine()));
     }
 
     private OutcomeOdd getOutcomeOdd(List<SportEvent> sportEvents, int index) {
@@ -123,6 +105,6 @@ public class View {
     }
 
     public void printResult(Player player, List<Wager> wagers) {
-
+        
     }
 }
