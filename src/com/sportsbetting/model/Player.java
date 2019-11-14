@@ -36,4 +36,8 @@ public class Player extends User {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+
+    public void subtractValue(BigDecimal wagerAmount) {
+        this.balance = this.balance.subtract(wagerAmount);
+    }
 }

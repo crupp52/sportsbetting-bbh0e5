@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Bet {
     private String description;
-    private SportEvent event;
     private List<Outcome> outcomes;
     private SportEvent sportEvent;
     private BetType betType;
@@ -21,7 +20,7 @@ public class Bet {
     }
 
     public SportEvent getEvent() {
-        return event;
+        return sportEvent;
     }
 
     public List<Outcome> getOutcomes() {

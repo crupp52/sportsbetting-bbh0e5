@@ -12,7 +12,14 @@ public class Wager {
     private Player player;
     private Currency currency;
 
-    public Wager() {
+    public Wager(BigDecimal amount, Player player, OutcomeOdd outcomeOdd) {
+        this.amount = amount;
+        this.player = player;
+        this.currency = player.getCurrency();
+        this.outcomeOdd = outcomeOdd;
+
+        timestampCreated = LocalDateTime.now();
+        processed = true;
     }
 
     public BigDecimal getAmount() {
@@ -26,5 +33,17 @@ public class Wager {
     @Override
     public String toString() {
         return this.outcomeOdd.getOutcome().getBet().getBetType().toString();
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
