@@ -12,7 +12,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class App {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
         App app = new App(new SportsBettingService(), new View());
@@ -44,17 +43,18 @@ public class App {
     }
 
     private void doBetting() throws IOException {
-        do {
-            OutcomeOdd outcomeOdd = view.selectOutcomeOdd(sportsBettingService.getSportEvents());
-            if (outcomeOdd != null) {
-                Wager wager = new Wager(view.readWagerAmount(), sportsBettingService.findPlayer(), outcomeOdd);
-                if (sportsBettingService.saveWager(wager)) {
-                    view.printWagerSaved(wager);
-                } else {
-                    view.printNotEnoughBalance(sportsBettingService.findPlayer());
-                }
+        OutcomeOdd outcomeOdd = view.selectOutcomeOdd(sportsBettingService.getSportEvents());
+        while (outcomeOdd != null) {
+
+            Wager wager = new Wager(view.readWagerAmount(), sportsBettingService.findPlayer(), outcomeOdd);
+            if (sportsBettingService.saveWager(wager)) {
+                view.printWagerSaved(wager);
+            } else {
+                view.printNotEnoughBalance(sportsBettingService.findPlayer());
             }
-        } while (!reader.readLine().equals("q"));
+            outcomeOdd = view.selectOutcomeOdd(sportsBettingService.getSportEvents());
+
+        }
     }
 
     private void calculateResult() {
