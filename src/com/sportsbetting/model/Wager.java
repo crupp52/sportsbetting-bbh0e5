@@ -35,6 +35,10 @@ public class Wager {
         return this.outcomeOdd.getOutcome().getBet().getBetType().toString();
     }
 
+    public String getResultString() {
+        return "Wager '" + outcomeOdd.getOutcome().getBet().getBetType().toString() + " " + outcomeOdd.getOutcome().getBet().getDescription() + "=" + outcomeOdd.getOutcome().getDescription() + "' of " + outcomeOdd.getOutcome().getBet().getEvent().getTitle() + " [odd: " + outcomeOdd.getValue() + ", amount: " + amount + "], win: " + win;
+    }
+
     public void setWin(boolean win) {
         this.win = win;
     }

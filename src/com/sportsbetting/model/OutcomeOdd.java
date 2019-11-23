@@ -20,8 +20,7 @@ public class OutcomeOdd {
         return this.outcome;
     }
 
-    @Override
-    public String toString() {
+    public String getDatas() {
         return "Actual odd: " + value + ", Valid between " + validFrom.toString() + " and " + validUntil.toString() + ".";
     }
 

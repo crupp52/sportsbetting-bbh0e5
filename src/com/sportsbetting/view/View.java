@@ -52,7 +52,7 @@ public class View {
                         bet.getOutcomes()) {
                     for (OutcomeOdd outcomeOdd :
                             outcome.getOutcomeOdds()) {
-                        output.append("> ").append(i++).append(": ").append(sportEvent.toString()).append(", ").append(bet.toString()).append(", ").append(outcome.toString()).append(", ").append(outcomeOdd.toString()).append("\n");
+                        output.append("> ").append(i++).append(": ").append(sportEvent.toString()).append(", ").append(bet.toString()).append(", ").append(outcome.toString()).append(", ").append(outcomeOdd.getDatas()).append("\n");
                     }
                 }
             }
@@ -64,7 +64,12 @@ public class View {
 
     public OutcomeOdd selectOutcomeOdd(List<SportEvent> sportEvents) throws IOException {
         printOutcomeOdds(sportEvents);
-        return getOutcomeOdd(sportEvents, Integer.parseInt(reader.readLine()));
+        String input = reader.readLine();
+        if (!input.equals("q")) {
+            return getOutcomeOdd(sportEvents, Integer.parseInt(input));
+        } else {
+            return null;
+        }
     }
 
     private OutcomeOdd getOutcomeOdd(List<SportEvent> sportEvents, int index) {
@@ -105,6 +110,9 @@ public class View {
     }
 
     public void printResult(Player player, List<Wager> wagers) {
-        
+        for (Wager wager : wagers) {
+            System.out.println(wager.getResultString());
+        }
+        System.out.println("Your new balance is " + player.getBalance() + " " + player.getCurrency());
     }
 }

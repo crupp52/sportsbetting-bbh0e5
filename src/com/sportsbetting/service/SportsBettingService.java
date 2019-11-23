@@ -116,6 +116,7 @@ public class SportsBettingService {
     }
 
     public void calculateResult() {
+        generateResult();
         BigDecimal winValue = BigDecimal.valueOf(0);
 
         for (Wager wager : wagers) {
@@ -141,7 +142,7 @@ public class SportsBettingService {
                     String outcomeString = "Outcome: " + outcome.getDescription();
                     for (OutcomeOdd outcomeOdd :
                             outcome.getOutcomeOdds()) {
-                        output.append(sportEvent.toString()).append(", ").append(bet.toString()).append(", ").append(outcome.toString()).append(", ").append(outcomeOdd.toString()).append("\n");
+                        output.append(sportEvent.toString()).append(", ").append(bet.toString()).append(", ").append(outcome.toString()).append(", ").append(outcomeOdd.getDatas()).append("\n");
                     }
                 }
             }
