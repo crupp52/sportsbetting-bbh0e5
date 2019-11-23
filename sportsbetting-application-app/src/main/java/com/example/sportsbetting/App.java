@@ -9,22 +9,17 @@ import com.example.sportsbetting.view.View;
 import java.io.IOException;
 import java.util.List;
 
+
 public class App {
-
-    public static void main(String[] args) throws IOException {
-        App app = new App(new SportsBettingService(), new View());
-        app.play();
-    }
-
     private SportsBettingService sportsBettingService;
     private View view;
 
-    private App(SportsBettingService sportsBettingService, View view) {
+    public App(SportsBettingService sportsBettingService, View view) {
         this.sportsBettingService = sportsBettingService;
         this.view = view;
     }
 
-    private void play() throws IOException {
+    public void play() throws IOException {
         createPlayer();
 
         doBetting();
