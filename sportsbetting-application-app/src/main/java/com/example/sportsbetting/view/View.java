@@ -1,6 +1,7 @@
 package com.example.sportsbetting.view;
 
 import com.example.sportsbetting.domain.*;
+import org.springframework.context.MessageSource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,18 +14,28 @@ import java.util.ResourceBundle;
 public class View {
 
     Locale locale;
+    MessageSource messageSource;
 
-    public View(Locale locale) {
+    public View() {
+        this.locale = Locale.ENGLISH;
+    }
+
+    public void setLocale(Locale locale) {
         this.locale = locale;
     }
 
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
     private String getLocaleString(String string) {
-        return ResourceBundle.getBundle("resources/strings", locale).getString(string);
+        //return ResourceBundle.getBundle("resources/strings", locale).getString(string);
+        return messageSource.getMessage("l1", null, Locale.ENGLISH);
     }
 
     public Player readPlayer() throws IOException {
         Player player = new Player();
-        System.out.println(getLocaleString("what_is_your_name"));
+        System.out.println(getLocaleString("l1"));
         player.setName(reader.readLine());
         //System.out.println("How much money do you have (more than 0)?");
         System.out.println(getLocaleString("how_much_money_do_you_have"));

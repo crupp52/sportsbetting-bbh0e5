@@ -1,16 +1,15 @@
-package com.example.sportsbetting;
+package com.example.sportsbetting.config;
 
+import com.example.sportsbetting.App;
 import com.example.sportsbetting.service.SportsBettingService;
 import com.example.sportsbetting.view.View;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-
-import java.util.Locale;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
 public class ApplicationConfig {
+
     @Bean
     public App app() {
         return new App(sportsBettingService(), view());
@@ -23,9 +22,16 @@ public class ApplicationConfig {
 
     @Bean
     public View view() {
-        return new View(locale);
+        return new View();
     }
 
-    @Value("hu_HU")
-    private Locale locale;
+    @Bean
+    public ResourceBundleMessageSource messageSource() {
+        ResourceBundleMessageSource source;
+        source = new ResourceBundleMessageSource();
+        source.setBasenames("messages/label");
+        source.setUseCodeAsDefaultMessage(true);
+
+        return source;
+    }
 }
