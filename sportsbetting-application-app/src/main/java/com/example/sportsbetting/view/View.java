@@ -1,21 +1,47 @@
 package com.example.sportsbetting.view;
 
 import com.example.sportsbetting.domain.*;
+import org.springframework.context.MessageSource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class View {
+
+    Locale locale;
+    MessageSource messageSource;
+
+    public View() {
+        this.locale = Locale.ENGLISH;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    private String getLocaleString(String string) {
+        //return ResourceBundle.getBundle("resources/strings", locale).getString(string);
+        return messageSource.getMessage(string, null, locale);
+    }
+
     public Player readPlayer() throws IOException {
         Player player = new Player();
-        System.out.println("What is your name?");
+        System.out.println(getLocaleString("what_is_your_name"));
         player.setName(reader.readLine());
-        System.out.println("How much money do you have (more than 0)?");
+        //System.out.println("How much money do you have (more than 0)?");
+        System.out.println(getLocaleString("how_much_money_do_you_have"));
         player.setBalance(new BigDecimal(reader.readLine()));
-        System.out.println("What is your currency? (HUF, EUR or USD)");
+        System.out.println(getLocaleString("what_is_your_currency"));
+        //System.out.println("What is your currency? (HUF, EUR or USD)");
         switch (reader.readLine()) {
             case "HUF":
                 player.setCurrency(Currency.HUF);
@@ -32,16 +58,18 @@ public class View {
     }
 
     public void printWelcomeMessage(Player player) {
-        System.out.println("Welcome " + player.getName());
+        System.out.println(getLocaleString("welcome") + " " + player.getName());
     }
 
     public void printBalance(Player player) {
-        System.out.println("Your balance is " + player.getBalance() + " " + player.getCurrency().toString());
+        System.out.println(getLocaleString("your_balance_is") + " " + player.getBalance() + " " + player.getCurrency().toString());
+        //.out.println("Your balance is " + player.getBalance() + " " + player.getCurrency().toString());
     }
 
     public void printOutcomeOdds(List<SportEvent> sportEvents) {
         StringBuilder output = new StringBuilder();
-        output.append("What are you want to bet on? (choose a number or press q for quit)\n");
+        output.append(getLocaleString("what_are_you_want_to_bet_on")).append("\n");
+        //output.append("What are you want to bet on? (choose a number or press q for quit)\n");
         int i = 1;
         for (SportEvent sportEvent :
                 sportEvents) {
@@ -97,7 +125,8 @@ public class View {
     }
 
     public BigDecimal readWagerAmount() throws IOException {
-        System.out.println("> What amount do you wish to bet on it?");
+        System.out.println(getLocaleString("what_amount_dou_you_wish_to_bet_on_it"));
+        //System.out.println("What amount do you wish to bet on it?");
         return BigDecimal.valueOf(Long.parseLong(reader.readLine()));
     }
 
@@ -106,13 +135,15 @@ public class View {
     }
 
     public void printNotEnoughBalance(Player player) {
-        System.out.println("You don't have enough money, your balance is " + player.getBalance() + " " + player.getCurrency().toString() + ".");
+        System.out.println(getLocaleString("dont_have_enough_money") + " " + player.getBalance() + " " + player.getCurrency().toString() + ".");
+        //System.out.println("You don't have enough money, your balance is " + player.getBalance() + " " + player.getCurrency().toString() + ".");
     }
 
     public void printResult(Player player, List<Wager> wagers) {
         for (Wager wager : wagers) {
             System.out.println(wager.getResultString());
         }
-        System.out.println("Your new balance is " + player.getBalance() + " " + player.getCurrency());
+        System.out.println(getLocaleString("your_balance_is") + " " + player.getBalance() + " " + player.getCurrency());
+        //System.out.println("Your new balance is " + player.getBalance() + " " + player.getCurrency());
     }
 }
