@@ -29,7 +29,7 @@ public class ApplicationConfig {
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource source;
         source = new ResourceBundleMessageSource();
-        source.setBasenames("messages/label");
+        source.setBasenames("messages/labels");
         source.setUseCodeAsDefaultMessage(true);
 
         return source;

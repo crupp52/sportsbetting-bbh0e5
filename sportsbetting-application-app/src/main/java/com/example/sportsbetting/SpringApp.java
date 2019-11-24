@@ -25,7 +25,7 @@ public class SpringApp {
 
         ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         App app = ctx.getBean(App.class);
-        app.setLocale(Locale.ENGLISH);
+        app.setLocale(new Locale("hu", "HU"));
 
         messageSource = ctx.getBean(ResourceBundleMessageSource.class);
         app.setMessageSource(messageSource);

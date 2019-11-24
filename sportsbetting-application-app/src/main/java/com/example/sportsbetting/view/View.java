@@ -30,12 +30,12 @@ public class View {
 
     private String getLocaleString(String string) {
         //return ResourceBundle.getBundle("resources/strings", locale).getString(string);
-        return messageSource.getMessage("l1", null, Locale.ENGLISH);
+        return messageSource.getMessage(string, null, locale);
     }
 
     public Player readPlayer() throws IOException {
         Player player = new Player();
-        System.out.println(getLocaleString("l1"));
+        System.out.println(getLocaleString("what_is_your_name"));
         player.setName(reader.readLine());
         //System.out.println("How much money do you have (more than 0)?");
         System.out.println(getLocaleString("how_much_money_do_you_have"));
