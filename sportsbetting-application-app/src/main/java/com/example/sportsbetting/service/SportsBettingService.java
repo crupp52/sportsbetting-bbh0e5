@@ -1,6 +1,8 @@
 package com.example.sportsbetting.service;
 
 import com.example.sportsbetting.domain.*;
+import com.example.sportsbetting.repository.*;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.math.BigDecimal;
@@ -11,83 +13,136 @@ import java.util.Random;
 
 @EnableJpaRepositories(basePackages = "com.example.sportsbetting.repository")
 public class SportsBettingService {
+    private BetRepository betRepository;
+    private SportEventRepository sportEventRepository;
+    private OutcomeRepository outcomeRepository;
+    private OutcomeOddRepository outcomeOddRepository;
+    private PlayerRepository playerRepository;
+    private ResultRepository resultRepository;
+    private WagerRepository wagerRepository;
+
     private List<Player> players;
     private List<SportEvent> sportEvents;
     private List<Wager> wagers;
 
     Random rnd = new Random();
+    private ApplicationContext context;
 
     public SportsBettingService() {
         this.players = new ArrayList<>();
         this.sportEvents = new ArrayList<>();
         this.wagers = new ArrayList<>();
-
-        Initialize();
     }
 
     public List<Player> getPlayers() {
-        return this.players;
+        return (List<Player>) playerRepository.findAll();
     }
 
     public List<SportEvent> getSportEvents() {
-        return this.sportEvents;
+        return (List<SportEvent>) sportEventRepository.findAll();
     }
 
     public List<Wager> getWagers() {
-        return this.wagers;
+        return (List<Wager>) wagerRepository.findAll();
     }
 
     public void Initialize() {
-        SportEvent sportEvent = new FootballSportEvent("Football Match - EPIC", LocalDateTime.of(2019, 10, 10, 20, 0), LocalDateTime.of(2019, 10, 10, 22, 0));
-        Bet bet = new Bet(BetType.NUMBER_OF_SETS);
+        SportEvent sportEvent = new FootballSportEvent();
+        sportEvent.setTitle("Football Match - EPIC");
+        sportEvent.setStartDate(LocalDateTime.of(2019, 10, 10, 20, 0));
+        sportEvent.setEndDate(LocalDateTime.of(2019, 10, 10, 22, 0));
+
+        Bet bet = new Bet();
+        bet.setBetType(BetType.NUMBER_OF_SETS);
         bet.setDescription("Bet01");
-        Outcome outcome = new Outcome("Coutcome0");
+
+        Outcome outcome = new Outcome();
+        outcome.setDescription("Coutcome0");
+
         OutcomeOdd outcomeOdd = new OutcomeOdd();
         outcomeOdd.setValue(BigDecimal.valueOf(200));
         outcomeOdd.setValidFrom(LocalDateTime.now());
         outcomeOdd.setValidUntil(LocalDateTime.of(2019, 12, 24, 10, 30));
+
         outcome.addOutcomeOddToList(outcomeOdd);
         bet.addOutcomeToList(outcome);
         sportEvent.addBetToList(bet);
         sportEvents.add(sportEvent);
 
-        sportEvent = new FootballSportEvent("Football Match - NOOB", LocalDateTime.of(2019, 10, 20, 20, 0), LocalDateTime.of(2019, 10, 20, 22, 0));
-        bet = new Bet(BetType.WINNER);
+        outcomeOddRepository.save(outcomeOdd);
+        outcomeRepository.save(outcome);
+        betRepository.save(bet);
+        sportEventRepository.save(sportEvent);
+
+
+
+        sportEvent = new FootballSportEvent();
+        sportEvent.setTitle("Football Match - NOOB");
+        sportEvent.setStartDate(LocalDateTime.of(2019, 10, 20, 20, 0));
+        sportEvent.setEndDate(LocalDateTime.of(2019, 10, 20, 22, 0));
+
+        bet = new Bet();
+        bet.setBetType(BetType.GOALS);
         bet.setDescription("Bet02");
-        outcome = new Outcome("Outcome1");
+
+        outcome = new Outcome();
+        outcome.setDescription("Outcome1");
+
         outcomeOdd = new OutcomeOdd();
         outcomeOdd.setValue(BigDecimal.valueOf(150));
         outcomeOdd.setValidFrom(LocalDateTime.now());
         outcomeOdd.setValidUntil(LocalDateTime.of(2019, 11, 24, 13, 30));
+
         outcome.addOutcomeOddToList(outcomeOdd);
         bet.addOutcomeToList(outcome);
         sportEvent.addBetToList(bet);
         sportEvents.add(sportEvent);
 
-        sportEvent = new TennisSportEvent("Tennis Challenge", LocalDateTime.of(2019, 11, 10, 10, 0), LocalDateTime.of(2019, 11, 10, 15, 0));
-        bet = new Bet(BetType.PLAYERS_SCORE);
+        outcomeOddRepository.save(outcomeOdd);
+        outcomeRepository.save(outcome);
+        betRepository.save(bet);
+        sportEventRepository.save(sportEvent);
+
+
+
+        sportEvent = new TennisSportEvent();
+        sportEvent.setTitle("Tennis Challenge");
+        sportEvent.setStartDate(LocalDateTime.of(2019, 11, 10, 10, 0));
+        sportEvent.setEndDate(LocalDateTime.of(2019, 11, 10, 15, 0));
+
+        bet = new Bet();
+        bet.setBetType(BetType.PLAYERS_SCORE);
         bet.setDescription("Bet03");
-        outcome = new Outcome("Outcome4");
+
+        outcome = new Outcome();
+        outcome.setDescription("Outcome4");
+
         outcomeOdd = new OutcomeOdd();
         outcomeOdd.setValue(BigDecimal.valueOf(600));
         outcomeOdd.setValidFrom(LocalDateTime.now());
         outcomeOdd.setValidUntil(LocalDateTime.of(2019, 11, 24, 13, 30));
+
         outcome.addOutcomeOddToList(outcomeOdd);
         bet.addOutcomeToList(outcome);
         sportEvent.addBetToList(bet);
         sportEvents.add(sportEvent);
+
+        outcomeOddRepository.save(outcomeOdd);
+        outcomeRepository.save(outcome);
+        betRepository.save(bet);
+        sportEventRepository.save(sportEvent);
     }
 
     public void SavePlayer(Player player) {
-        this.players.add(player);
+        playerRepository.save(player);
     }
 
     public Player findPlayer() {
-        return this.players.get(0);
+        return playerRepository.findById(16).get();
     }
 
     public List<SportEvent> findAllSportEvents() {
-        return this.sportEvents;
+        return (List<SportEvent>)sportEventRepository.findAll();
     }
 
     public boolean saveWager(Wager wager) {
@@ -96,7 +151,7 @@ public class SportsBettingService {
 
         if (tempPlayerBalance.max(wagerAmount).equals(tempPlayerBalance)) {
             findPlayer().subtractValue(wagerAmount);
-            this.wagers.add(wager);
+            wagerRepository.save(wager);
 
             return true;
         }
@@ -105,7 +160,7 @@ public class SportsBettingService {
     }
 
     public List<Wager> findAllWagers() {
-        return this.wagers;
+        return (List<Wager>) wagerRepository.findAll();
     }
 
     private void generateResult() {
@@ -127,7 +182,9 @@ public class SportsBettingService {
             }
         }
 
-        findPlayer().setBalance(winValue.add(findPlayer().getBalance()));
+        Player player = findPlayer();
+        player.setBalance(winValue.add(player.getBalance()));
+        playerRepository.save(player);
     }
 
     @Override
@@ -138,10 +195,8 @@ public class SportsBettingService {
             for (Bet bet :
                     sportEvent.getBets()
             ) {
-                String betString = "Bet: " + bet.getBetType().toString() + " " + bet.getDescription();
                 for (Outcome outcome :
                         bet.getOutcomes()) {
-                    String outcomeString = "Outcome: " + outcome.getDescription();
                     for (OutcomeOdd outcomeOdd :
                             outcome.getOutcomeOdds()) {
                         output.append(sportEvent.toString()).append(", ").append(bet.toString()).append(", ").append(outcome.toString()).append(", ").append(outcomeOdd.getDatas()).append("\n");
@@ -151,5 +206,17 @@ public class SportsBettingService {
         }
 
         return output.toString();
+    }
+
+    public void setContext(ApplicationContext context) {
+        this.context = context;
+
+        betRepository = context.getBean(BetRepository.class);
+        outcomeOddRepository = context.getBean(OutcomeOddRepository.class);
+        outcomeRepository = context.getBean(OutcomeRepository.class);
+        playerRepository = context.getBean(PlayerRepository.class);
+        resultRepository = context.getBean(ResultRepository.class);
+        sportEventRepository = context.getBean(SportEventRepository.class);
+        wagerRepository = context.getBean(WagerRepository.class);
     }
 }

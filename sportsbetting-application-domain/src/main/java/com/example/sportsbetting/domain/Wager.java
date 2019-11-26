@@ -64,12 +64,7 @@ public class Wager {
         this.currency = currency;
     }
 
-    public Wager(BigDecimal amount, Player player, OutcomeOdd outcomeOdd) {
-        this.amount = amount;
-        this.player = player;
-        this.currency = player.getCurrency();
-        this.outcomeOdd = outcomeOdd;
-
+    public Wager() {
         timestampCreated = LocalDateTime.now();
         processed = true;
     }

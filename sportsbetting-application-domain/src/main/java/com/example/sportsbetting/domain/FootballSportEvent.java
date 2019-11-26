@@ -5,7 +5,5 @@ import java.time.LocalDateTime;
 
 @Entity
 public class FootballSportEvent extends SportEvent {
-    public FootballSportEvent(String title, LocalDateTime startDate, LocalDateTime endDate) {
-        super(title, startDate, endDate);
-    }
+
 }

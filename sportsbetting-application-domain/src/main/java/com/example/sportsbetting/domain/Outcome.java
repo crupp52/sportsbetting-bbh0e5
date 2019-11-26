@@ -1,5 +1,8 @@
 package com.example.sportsbetting.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +13,13 @@ public class Outcome {
     @GeneratedValue
     private Integer id;
     private String description;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Bet bet;
     @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<OutcomeOdd> outcomeOdds;
 
-    public Outcome(String description) {
-        this.description = description;
+    public Outcome() {
         this.outcomeOdds = new ArrayList<>();
     }
 

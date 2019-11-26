@@ -31,7 +31,7 @@ public class SpringApp {
         messageSource = ctx.getBean(ResourceBundleMessageSource.class);
         app.setMessageSource(messageSource);
         app.setLogger(logger);
-        app.play();
+        app.play(ctx);
 
         ctx.close();
     }

@@ -1,5 +1,7 @@
 package com.example.sportsbetting.domain;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,7 +14,7 @@ public class OutcomeOdd {
     private BigDecimal value;
     private LocalDateTime validFrom;
     private LocalDateTime validUntil;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Outcome outcome;
 
 

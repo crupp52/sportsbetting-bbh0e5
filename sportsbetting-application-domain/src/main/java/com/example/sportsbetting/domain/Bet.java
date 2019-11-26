@@ -1,5 +1,9 @@
 package com.example.sportsbetting.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.context.annotation.Bean;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +15,9 @@ public class Bet {
     private Integer id;
     private String description;
     @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Outcome> outcomes;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private SportEvent sportEvent;
     @Enumerated
     private BetType betType;
@@ -34,8 +39,11 @@ public class Bet {
     }
 
     public Bet(BetType betType) {
+        super();
         this.betType = betType;
+    }
 
+    public Bet(){
         this.outcomes = new ArrayList<>();
     }
 
