@@ -1,15 +1,21 @@
 package com.example.sportsbetting.domain;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class SportEvent {
-    public List<OutcomeOdd> get;
+    @Id
+    @GeneratedValue
+    private int id;
     private String title;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    @ElementCollection
     private List<Bet> bets;
+    @OneToOne
     private Result result;
 
     public SportEvent(String title, LocalDateTime startDate, LocalDateTime endDate) {

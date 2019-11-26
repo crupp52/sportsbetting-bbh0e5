@@ -1,6 +1,7 @@
 package com.example.sportsbetting.service;
 
 import com.example.sportsbetting.domain.*;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@EnableJpaRepositories(basePackages = "com.example.sportsbetting.repository")
 public class SportsBettingService {
     private List<Player> players;
     private List<SportEvent> sportEvents;

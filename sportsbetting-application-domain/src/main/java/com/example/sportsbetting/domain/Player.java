@@ -1,16 +1,44 @@
 package com.example.sportsbetting.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
 public class Player extends User {
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String name;
     private Integer accountNumber;
     private BigDecimal balance;
     private LocalDate birth;
     private Currency currency;
 
-    public Player() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(Integer accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
     }
 
     public String getName() {

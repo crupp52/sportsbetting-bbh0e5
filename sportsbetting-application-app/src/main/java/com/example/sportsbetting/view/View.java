@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class View {
 

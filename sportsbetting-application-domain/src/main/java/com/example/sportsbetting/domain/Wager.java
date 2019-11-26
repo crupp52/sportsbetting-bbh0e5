@@ -1,16 +1,68 @@
 package com.example.sportsbetting.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
 public class Wager {
+    @Id
+    @GeneratedValue
+    private int id;
     private BigDecimal amount;
     private LocalDateTime timestampCreated;
     private boolean processed;
     private boolean win;
+    @OneToOne
     private OutcomeOdd outcomeOdd;
+    @OneToOne
     private Player player;
+    @Enumerated
     private Currency currency;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getTimestampCreated() {
+        return timestampCreated;
+    }
+
+    public void setTimestampCreated(LocalDateTime timestampCreated) {
+        this.timestampCreated = timestampCreated;
+    }
+
+    public boolean isProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(boolean processed) {
+        this.processed = processed;
+    }
+
+    public void setOutcomeOdd(OutcomeOdd outcomeOdd) {
+        this.outcomeOdd = outcomeOdd;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
 
     public Wager(BigDecimal amount, Player player, OutcomeOdd outcomeOdd) {
         this.amount = amount;
