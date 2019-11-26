@@ -1,13 +1,30 @@
 package com.example.sportsbetting.domain;
 
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
 public class OutcomeOdd {
+    @Id
+    @GeneratedValue
+    private Integer id;
     private BigDecimal value;
     private LocalDateTime validFrom;
     private LocalDateTime validUntil;
+    @ManyToOne(cascade = CascadeType.ALL)
     private Outcome outcome;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public OutcomeOdd() {
     }

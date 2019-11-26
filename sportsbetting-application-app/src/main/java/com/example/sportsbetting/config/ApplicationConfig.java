@@ -6,8 +6,10 @@ import com.example.sportsbetting.view.View;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
+@EnableJpaRepositories("com.example.sportsbetting.repository")
 public class ApplicationConfig {
 
     @Bean

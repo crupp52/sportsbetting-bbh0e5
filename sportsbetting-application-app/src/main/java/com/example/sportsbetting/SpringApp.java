@@ -1,6 +1,7 @@
 package com.example.sportsbetting;
 
 import com.example.sportsbetting.config.ApplicationConfig;
+import com.example.sportsbetting.config.JpaConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -23,14 +24,14 @@ public class SpringApp {
 
     public static void main(String[] args) throws IOException {
 
-        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationConfig.class, JpaConfig.class);
         App app = ctx.getBean(App.class);
         app.setLocale(new Locale("hu", "HU"));
 
         messageSource = ctx.getBean(ResourceBundleMessageSource.class);
         app.setMessageSource(messageSource);
         app.setLogger(logger);
-        app.play();
+        app.play(ctx);
 
         ctx.close();
     }

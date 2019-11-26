@@ -1,22 +1,50 @@
 package com.example.sportsbetting.domain;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class SportEvent {
-    public List<OutcomeOdd> get;
+    @Id
+    @GeneratedValue
+    private int id;
     private String title;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setBets(List<Bet> bets) {
+        this.bets = bets;
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Bet> bets;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Result result;
 
-    public SportEvent(String title, LocalDateTime startDate, LocalDateTime endDate) {
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
-
+    public SportEvent() {
         this.result = new Result();
         this.bets = new ArrayList<>();
     }

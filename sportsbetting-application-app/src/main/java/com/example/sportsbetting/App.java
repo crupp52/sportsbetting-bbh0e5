@@ -6,6 +6,7 @@ import com.example.sportsbetting.domain.Wager;
 import com.example.sportsbetting.service.SportsBettingService;
 import com.example.sportsbetting.view.View;
 import org.slf4j.Logger;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
@@ -23,7 +24,9 @@ public class App {
         this.view = view;
     }
 
-    public void play() throws IOException {
+    public void play(ApplicationContext context) throws IOException {
+        sportsBettingService.setContext(context);
+        sportsBettingService.Initialize();
         logger.info("Player Creation");
         createPlayer();
         logger.info("Do betting");
@@ -46,7 +49,10 @@ public class App {
         OutcomeOdd outcomeOdd = view.selectOutcomeOdd(sportsBettingService.getSportEvents());
         while (outcomeOdd != null) {
 
-            Wager wager = new Wager(view.readWagerAmount(), sportsBettingService.findPlayer(), outcomeOdd);
+            Wager wager = new Wager();
+            wager.setAmount(view.readWagerAmount());
+            wager.setPlayer(sportsBettingService.findPlayer());
+            wager.setOutcomeOdd(outcomeOdd);
             if (sportsBettingService.saveWager(wager)) {
                 view.printWagerSaved(wager);
             } else {
