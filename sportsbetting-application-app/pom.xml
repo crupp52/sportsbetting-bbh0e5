@@ -9,7 +9,7 @@
         <relativePath>../sportsbetting-application-maven/pom.xml</relativePath>
     </parent>
 
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>com.example</groupId>
