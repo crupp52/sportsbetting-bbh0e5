@@ -44,14 +44,14 @@
                 Account details
             </div>
             <div class="card-body">
-                <form>
+                <form action="save" method="post">
                     <div class="form-group row">
                         <div class="col">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Name</div>
                                 </div>
-                                <input id="name" name="name" placeholder="John Golden" type="text" class="form-control">
+                                <input id="name" name="name" placeholder="John Golden" type="text" class="form-control" value="${user.getName()}">
                             </div>
                         </div>
                     </div>
@@ -61,8 +61,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Birth date</div>
                                 </div>
-                                <input id="birth-date" name="birth-date" placeholder="1976-01-01" type="text"
-                                       class="form-control">
+                                <input id="birth-date" name="birth-date" placeholder="1976-01-01" type="text" class="form-control" value="${user.getBirth()}">
                             </div>
                         </div>
                     </div>
@@ -72,8 +71,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Account number</div>
                                 </div>
-                                <input id="account-number" name="account-number" placeholder="12345678-12345678"
-                                       type="text" class="form-control">
+                                <input id="account-number" name="account-number" placeholder="12345678-12345678" type="text" class="form-control" value="${user.getAccountNumber()}">
                             </div>
                         </div>
                     </div>
@@ -83,7 +81,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Currency</div>
                                 </div>
-                                <input id="currency" name="currency" placeholder="USD" type="text" class="form-control">
+                                <input id="currency" name="currency" placeholder="USD" type="text" class="form-control" value="${user.getCurrency()}">
                             </div>
                         </div>
                     </div>
@@ -93,7 +91,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Balance</div>
                                 </div>
-                                <input id="balance" name="balance" placeholder="5000" type="text" class="form-control">
+                                <input id="balance" name="balance" placeholder="5000" type="text" class="form-control" value="${user.getBalance()}">
                             </div>
                         </div>
                     </div>
@@ -126,22 +124,40 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>MTK-FTC - 2019.10.10.</td>
-                        <td>Football Match</td>
-                        <td>Winner</td>
-                        <td>MTK</td>
-                        <td>1:2</td>
-                        <td>10000</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                        <td>
-                            <a href="#">
-                                <button class="btn btn-danger">Remove</button>
-                            </a>
-                        </td>
-                    </tr>
+                    <%--                    <tr>--%>
+                    <%--                        <th scope="row">1</th>--%>
+                    <%--                        <td>MTK-FTC - 2019.10.10.</td>--%>
+                    <%--                        <td>Football Match</td>--%>
+                    <%--                        <td>Winner</td>--%>
+                    <%--                        <td>MTK</td>--%>
+                    <%--                        <td>1:2</td>--%>
+                    <%--                        <td>10000</td>--%>
+                    <%--                        <td>Yes</td>--%>
+                    <%--                        <td>No</td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <a href="#">--%>
+                    <%--                                <button class="btn btn-danger">Remove</button>--%>
+                    <%--                            </a>--%>
+                    <%--                        </td>--%>
+                    <%--                    </tr>--%>
+                    <c:forEach items="${wagers}" var="wager">
+                        <tr>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${wager.isProcessed()}">
+                                        <input type="hidden" value="${wager.getWagerId()}" id="id" name="id">
+                                        <button class="btn btn-danger" type="submit">Remove</button>
+                                    </c:when>
+                                </c:choose>
+                            </td>
+                            <td>
+                                ${wager.getEventTitle()}
+                            </td>
+                            <td>
+                                ${wager.getEventType}
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

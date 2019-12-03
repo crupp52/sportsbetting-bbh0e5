@@ -16,7 +16,7 @@ public class LoginController {
     private SportsBettingService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String login(ModelMap model) {
+    public String login() {
         return "login";
     }
 

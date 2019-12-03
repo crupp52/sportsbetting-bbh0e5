@@ -2,6 +2,7 @@ package com.example.sportsbetting.service;
 
 import com.example.sportsbetting.domain.*;
 import com.example.sportsbetting.repository.*;
+import com.example.sportsbetting.viewHelper.WagerInfoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -60,90 +62,90 @@ public class SportsBettingServiceImpl implements SportsBettingService {
     }
 
     public void Initialize() {
-//        SportEvent sportEvent = new FootballSportEvent();
-//        sportEvent.setTitle("Football Match - EPIC");
-//        sportEvent.setStartDate(LocalDateTime.of(2019, 10, 10, 20, 0));
-//        sportEvent.setEndDate(LocalDateTime.of(2019, 10, 10, 22, 0));
-//
-//        Bet bet = new Bet();
-//        bet.setBetType(BetType.NUMBER_OF_SETS);
-//        bet.setDescription("Bet01");
-//
-//        Outcome outcome = new Outcome();
-//        outcome.setDescription("Coutcome0");
-//
-//        OutcomeOdd outcomeOdd = new OutcomeOdd();
-//        outcomeOdd.setValue(BigDecimal.valueOf(200));
-//        outcomeOdd.setValidFrom(LocalDateTime.now());
-//        outcomeOdd.setValidUntil(LocalDateTime.of(2019, 12, 24, 10, 30));
-//
-//        outcome.addOutcomeOddToList(outcomeOdd);
-//        bet.addOutcomeToList(outcome);
-//        sportEvent.addBetToList(bet);
-//        sportEvents.add(sportEvent);
-//
-//        outcomeOddRepository.save(outcomeOdd);
-//        outcomeRepository.save(outcome);
-//        betRepository.save(bet);
-//        sportEventRepository.save(sportEvent);
-//
-//
-//
-//        sportEvent = new FootballSportEvent();
-//        sportEvent.setTitle("Football Match - NOOB");
-//        sportEvent.setStartDate(LocalDateTime.of(2019, 10, 20, 20, 0));
-//        sportEvent.setEndDate(LocalDateTime.of(2019, 10, 20, 22, 0));
-//
-//        bet = new Bet();
-//        bet.setBetType(BetType.GOALS);
-//        bet.setDescription("Bet02");
-//
-//        outcome = new Outcome();
-//        outcome.setDescription("Outcome1");
-//
-//        outcomeOdd = new OutcomeOdd();
-//        outcomeOdd.setValue(BigDecimal.valueOf(150));
-//        outcomeOdd.setValidFrom(LocalDateTime.now());
-//        outcomeOdd.setValidUntil(LocalDateTime.of(2019, 11, 24, 13, 30));
-//
-//        outcome.addOutcomeOddToList(outcomeOdd);
-//        bet.addOutcomeToList(outcome);
-//        sportEvent.addBetToList(bet);
-//        sportEvents.add(sportEvent);
-//
-//        outcomeOddRepository.save(outcomeOdd);
-//        outcomeRepository.save(outcome);
-//        betRepository.save(bet);
-//        sportEventRepository.save(sportEvent);
-//
-//
-//
-//        sportEvent = new TennisSportEvent();
-//        sportEvent.setTitle("Tennis Challenge");
-//        sportEvent.setStartDate(LocalDateTime.of(2019, 11, 10, 10, 0));
-//        sportEvent.setEndDate(LocalDateTime.of(2019, 11, 10, 15, 0));
-//
-//        bet = new Bet();
-//        bet.setBetType(BetType.PLAYERS_SCORE);
-//        bet.setDescription("Bet03");
-//
-//        outcome = new Outcome();
-//        outcome.setDescription("Outcome4");
-//
-//        outcomeOdd = new OutcomeOdd();
-//        outcomeOdd.setValue(BigDecimal.valueOf(600));
-//        outcomeOdd.setValidFrom(LocalDateTime.now());
-//        outcomeOdd.setValidUntil(LocalDateTime.of(2019, 11, 24, 13, 30));
-//
-//        outcome.addOutcomeOddToList(outcomeOdd);
-//        bet.addOutcomeToList(outcome);
-//        sportEvent.addBetToList(bet);
-//        sportEvents.add(sportEvent);
-//
-//        outcomeOddRepository.save(outcomeOdd);
-//        outcomeRepository.save(outcome);
-//        betRepository.save(bet);
-//        sportEventRepository.save(sportEvent);
+        SportEvent sportEvent = new FootballSportEvent();
+        sportEvent.setTitle("Football Match - EPIC");
+        sportEvent.setStartDate(LocalDateTime.of(2019, 10, 10, 20, 0));
+        sportEvent.setEndDate(LocalDateTime.of(2019, 10, 10, 22, 0));
+
+        Bet bet = new Bet();
+        bet.setBetType(BetType.NUMBER_OF_SETS);
+        bet.setDescription("Bet01");
+
+        Outcome outcome = new Outcome();
+        outcome.setDescription("Coutcome0");
+
+        OutcomeOdd outcomeOdd = new OutcomeOdd();
+        outcomeOdd.setValue(BigDecimal.valueOf(200));
+        outcomeOdd.setValidFrom(LocalDateTime.now());
+        outcomeOdd.setValidUntil(LocalDateTime.of(2019, 12, 24, 10, 30));
+
+        outcome.addOutcomeOddToList(outcomeOdd);
+        bet.addOutcomeToList(outcome);
+        sportEvent.addBetToList(bet);
+        sportEvents.add(sportEvent);
+
+        outcomeOddRepository.save(outcomeOdd);
+        outcomeRepository.save(outcome);
+        betRepository.save(bet);
+        sportEventRepository.save(sportEvent);
+
+
+
+        sportEvent = new FootballSportEvent();
+        sportEvent.setTitle("Football Match - NOOB");
+        sportEvent.setStartDate(LocalDateTime.of(2019, 10, 20, 20, 0));
+        sportEvent.setEndDate(LocalDateTime.of(2019, 10, 20, 22, 0));
+
+        bet = new Bet();
+        bet.setBetType(BetType.GOALS);
+        bet.setDescription("Bet02");
+
+        outcome = new Outcome();
+        outcome.setDescription("Outcome1");
+
+        outcomeOdd = new OutcomeOdd();
+        outcomeOdd.setValue(BigDecimal.valueOf(150));
+        outcomeOdd.setValidFrom(LocalDateTime.now());
+        outcomeOdd.setValidUntil(LocalDateTime.of(2019, 11, 24, 13, 30));
+
+        outcome.addOutcomeOddToList(outcomeOdd);
+        bet.addOutcomeToList(outcome);
+        sportEvent.addBetToList(bet);
+        sportEvents.add(sportEvent);
+
+        outcomeOddRepository.save(outcomeOdd);
+        outcomeRepository.save(outcome);
+        betRepository.save(bet);
+        sportEventRepository.save(sportEvent);
+
+
+
+        sportEvent = new TennisSportEvent();
+        sportEvent.setTitle("Tennis Challenge");
+        sportEvent.setStartDate(LocalDateTime.of(2019, 11, 10, 10, 0));
+        sportEvent.setEndDate(LocalDateTime.of(2019, 11, 10, 15, 0));
+
+        bet = new Bet();
+        bet.setBetType(BetType.PLAYERS_SCORE);
+        bet.setDescription("Bet03");
+
+        outcome = new Outcome();
+        outcome.setDescription("Outcome4");
+
+        outcomeOdd = new OutcomeOdd();
+        outcomeOdd.setValue(BigDecimal.valueOf(600));
+        outcomeOdd.setValidFrom(LocalDateTime.now());
+        outcomeOdd.setValidUntil(LocalDateTime.of(2019, 11, 24, 13, 30));
+
+        outcome.addOutcomeOddToList(outcomeOdd);
+        bet.addOutcomeToList(outcome);
+        sportEvent.addBetToList(bet);
+        sportEvents.add(sportEvent);
+
+        outcomeOddRepository.save(outcomeOdd);
+        outcomeRepository.save(outcome);
+        betRepository.save(bet);
+        sportEventRepository.save(sportEvent);
     }
 
     public void SavePlayer(Player player) {
@@ -155,7 +157,7 @@ public class SportsBettingServiceImpl implements SportsBettingService {
     }
 
     public List<SportEvent> findAllSportEvents() {
-        return (List<SportEvent>)sportEventRepository.findAll();
+        return (List<SportEvent>) sportEventRepository.findAll();
     }
 
     public boolean saveWager(Wager wager) {
@@ -224,12 +226,12 @@ public class SportsBettingServiceImpl implements SportsBettingService {
     @Override
     public boolean Login(String name, String password) {
         Player tempPlayer = playerRepository.findPlayerByName(name);
-        if (tempPlayer != null && tempPlayer.getPassword().equals(password)){
-            this.loggedInUser =  tempPlayer;
+        if (tempPlayer != null && tempPlayer.getPassword().equals(password)) {
+            this.loggedInUser = tempPlayer;
             return true;
         }
 
-        return  false;
+        return false;
     }
 
     @Override
@@ -240,5 +242,42 @@ public class SportsBettingServiceImpl implements SportsBettingService {
     @Override
     public List<Wager> getLoggedInUserWagers() {
         return wagerRepository.findByPlayerId(loggedInUser.getId());
+    }
+
+    @Override
+    public List<WagerInfoHelper> getWagerInfos() {
+        List<WagerInfoHelper> wagers = new ArrayList<>();
+        List<Wager> rawWagers = wagerRepository.findByPlayerId(loggedInUser.getId());
+
+        for (Wager item : rawWagers) {
+            wagers.add(wagerInfoAdapter(item));
+        }
+
+        return wagers;
+    }
+
+    @Override
+    public void savePlayer(Player player) {
+        this.loggedInUser = player;
+    }
+
+    private WagerInfoHelper wagerInfoAdapter(Wager w){
+        OutcomeOdd outcomeOdd = outcomeOddRepository.findById(w.getOutcomeOdd().getId()).get();
+        WagerInfoHelper wagerInfo = new WagerInfoHelper();
+        Outcome outcome = outcomeOdd.getOutcome();
+        Bet bet = outcome.getBet();
+        SportEvent sportEvent = bet.getSportEvent();
+
+        wagerInfo.setId(w.getId());
+        wagerInfo.setEventTitle(sportEvent.getTitle());
+        wagerInfo.setEventType("Match");
+        wagerInfo.setBetType(bet.getBetType().toString());
+        wagerInfo.setOutcomeValue(outcome.getDescription());
+        wagerInfo.setOutcomeOdd("1:" + outcomeOdd.getValue().toString());
+        wagerInfo.setWagerAmount(w.getAmount() + " " + w.getCurrency().toString());
+        wagerInfo.setWinner(w.isWin() ? "Yes" : "No");
+        wagerInfo.setProcessed(w.isProcessed() ? "Yes" : "No");
+
+        return wagerInfo;
     }
 }

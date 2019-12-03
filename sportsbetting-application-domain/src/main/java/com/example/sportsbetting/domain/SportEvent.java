@@ -66,11 +66,6 @@ public class SportEvent {
         return endDate;
     }
 
-    @Override
-    public String toString() {
-        return "Sport event: " + title + " (Start: " + startDate.toString() + ")";
-    }
-
     public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }

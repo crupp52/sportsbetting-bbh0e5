@@ -1,9 +1,6 @@
 package com.example.sportsbetting.controller;
 
-import com.example.sportsbetting.service.SportsBettingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -11,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class WelcomeController {
 
-    @Autowired
-    private SportsBettingService service;
-
     @RequestMapping(method = RequestMethod.GET)
-    public String welcome(ModelMap model) {
+    public String welcome() {
         return "welcome";
     }
 
