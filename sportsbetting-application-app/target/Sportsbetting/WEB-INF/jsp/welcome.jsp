@@ -12,141 +12,14 @@
     <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Főoldal <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Nyelv
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">English</a>
-                    <a class="dropdown-item" href="#">Magyar</a>
-                </div>
-            </li>
-        </ul>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to Sportsbetting Service!</h1>
+            <p class="lead">Log in to access the amazing functions.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="login" role="button">Login</a>
+            </p>
+        </div>
     </div>
-</nav>
-<div class="container">
-
-    <main>
-        <div class="card m-3">
-            <div class="card-header">
-                Account details
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group row">
-                        <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Name</div>
-                                </div>
-                                <input id="name" name="name" placeholder="John Golden" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Birth date</div>
-                                </div>
-                                <input id="birth-date" name="birth-date" placeholder="1976-01-01" type="text"
-                                       class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Account number</div>
-                                </div>
-                                <input id="account-number" name="account-number" placeholder="12345678-12345678"
-                                       type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Currency</div>
-                                </div>
-                                <input id="currency" name="currency" placeholder="USD" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Balance</div>
-                                </div>
-                                <input id="balance" name="balance" placeholder="5000" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="card m-3">
-            <div class="card-header">
-                Wagers
-            </div>
-            <div class="card-body">
-                <table id="wager-table" class="table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Event title</th>
-                        <th>Event type</th>
-                        <th>Bet type</th>
-                        <th>Outcome value</th>
-                        <th>Outcome odd</th>
-                        <th>Wager amount</th>
-                        <th>Winner</th>
-                        <th>Processed</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>MTK-FTC - 2019.10.10.</td>
-                        <td>Football Match</td>
-                        <td>Winner</td>
-                        <td>MTK</td>
-                        <td>1:2</td>
-                        <td>10000</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                        <td>
-                            <a href="#">
-                                <button class="btn btn-danger">Remove</button>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-</div>
 </body>
 </html>

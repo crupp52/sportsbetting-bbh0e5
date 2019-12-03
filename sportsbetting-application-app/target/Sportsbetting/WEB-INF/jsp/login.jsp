@@ -18,13 +18,13 @@
             Login
         </div>
         <div class="card-body">
-            <form>
+            <form method="post" action="login">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="input-group-text">Email</div>
+                            <div class="input-group-text">Name</div>
                         </div>
-                        <input id="email" name="email" type="text" required="required" class="form-control">
+                        <input id="name" name="name" type="text" required="required" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

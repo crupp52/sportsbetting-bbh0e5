@@ -8,22 +8,12 @@ import java.time.LocalDate;
 
 @Entity
 public class Player extends User {
-    @Id
-    @GeneratedValue
-    private Integer id;
     private String name;
     private Integer accountNumber;
     private BigDecimal balance;
     private LocalDate birth;
     private Currency currency;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
     public Integer getAccountNumber() {
         return accountNumber;
     }

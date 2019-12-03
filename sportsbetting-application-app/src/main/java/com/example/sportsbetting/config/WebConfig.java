@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.example.sportsbetting.controller")
+@ComponentScan("com.example.sportsbetting")
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
