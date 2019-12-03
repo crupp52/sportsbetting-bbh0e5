@@ -24,9 +24,9 @@ public class LoginController {
     public RedirectView login(String name, String password) {
         boolean result = service.Login(name, password);
         if (result) {
-            return new RedirectView("/home");
+            return new RedirectView("/sportsbetting_application_app_war_exploded/home");
         }
 
-        return new RedirectView("/login");
+        return new RedirectView("/sportsbetting_application_app_war_exploded/login");
     }
 }
