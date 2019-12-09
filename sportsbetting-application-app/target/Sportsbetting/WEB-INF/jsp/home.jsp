@@ -44,14 +44,15 @@
                 Account details
             </div>
             <div class="card-body">
-                <form action="save" method="post">
+                <form action="home/save" method="post">
                     <div class="form-group row">
                         <div class="col">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Name</div>
                                 </div>
-                                <input id="name" name="name" placeholder="John Golden" type="text" class="form-control" value="${user.getName()}">
+                                <input id="name" name="name" placeholder="John Golden" type="text" class="form-control"
+                                       value="${user.getName()}">
                             </div>
                         </div>
                     </div>
@@ -61,7 +62,8 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Birth date</div>
                                 </div>
-                                <input id="birth-date" name="birth-date" placeholder="1976-01-01" type="text" class="form-control" value="${user.getBirth()}">
+                                <input id="birth-date" name="birth-date" placeholder="1976-01-01" type="text"
+                                       class="form-control" value="${user.getBirth()}">
                             </div>
                         </div>
                     </div>
@@ -71,7 +73,8 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Account number</div>
                                 </div>
-                                <input id="account-number" name="account-number" placeholder="12345678-12345678" type="text" class="form-control" value="${user.getAccountNumber()}">
+                                <input id="account-number" name="account-number" placeholder="12345678-12345678"
+                                       type="text" class="form-control" value="${user.getAccountNumber()}">
                             </div>
                         </div>
                     </div>
@@ -81,7 +84,8 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Currency</div>
                                 </div>
-                                <input id="currency" name="currency" placeholder="USD" type="text" class="form-control" value="${user.getCurrency()}">
+                                <input id="currency" name="currency" placeholder="USD" type="text" class="form-control"
+                                       value="${user.getCurrency()}">
                             </div>
                         </div>
                     </div>
@@ -91,7 +95,8 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Balance</div>
                                 </div>
-                                <input id="balance" name="balance" placeholder="5000" type="text" class="form-control" value="${user.getBalance()}">
+                                <input id="balance" name="balance" placeholder="5000" type="text" class="form-control"
+                                       value="${user.getBalance()}">
                             </div>
                         </div>
                     </div>
@@ -143,18 +148,40 @@
                     <c:forEach items="${wagers}" var="wager">
                         <tr>
                             <td>
+                                    ${wager.getId()}
+                            </td>
+                            <td>
+                                    ${wager.getEventTitle()}
+                            </td>
+                            <td>
+                                    ${wager.getEventType()}
+                            </td>
+                            <td>
+                                    ${wager.getBetType()}
+                            </td>
+                            <td>
+                                    ${wager.getOutcomeValue()}
+                            </td>
+                            <td>
+                                    ${wager.getOutcomeOdd()}
+                            </td>
+                            <td>
+                                    ${wager.getWagerAmount()}
+                            </td>
+                            <td>
+                                    ${wager.getWinner()}
+                            </td>
+                            <td>
+                                    ${wager.getProcessed()}
+                            </td>
+                            <td>
                                 <c:choose>
-                                    <c:when test="${wager.isProcessed()}">
-                                        <input type="hidden" value="${wager.getWagerId()}" id="id" name="id">
-                                        <button class="btn btn-danger" type="submit">Remove</button>
+                                    <c:when test="${!wager.isProcessed()}">
+                                        <a href="home/delete?id=${wager.getId()}">
+                                            <button class="btn btn-danger" type="submit">Remove</button>
+                                        </a>
                                     </c:when>
                                 </c:choose>
-                            </td>
-                            <td>
-                                ${wager.getEventTitle()}
-                            </td>
-                            <td>
-                                ${wager.getEventType}
                             </td>
                         </tr>
                     </c:forEach>
