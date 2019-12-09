@@ -12,4 +12,5 @@ public interface SportsBettingService {
     List<Wager> getLoggedInUserWagers();
     List<WagerInfoHelper> getWagerInfos();
     void savePlayer(Player player);
+    void deleteWager(String id);
 }

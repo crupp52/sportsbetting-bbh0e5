@@ -1,5 +1,6 @@
 package com.example.sportsbetting.config;
 
+import com.example.sportsbetting.seed.DatabaseSeeder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -35,5 +36,10 @@ public class WebConfig implements WebMvcConfigurer {
         bean.setBasename("views");
         return bean;
     }
+
+    /*@Bean
+    public DatabaseSeeder seedDatabase() {
+        return new DatabaseSeeder();
+    }*/
 
 }

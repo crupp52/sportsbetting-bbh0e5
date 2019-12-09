@@ -259,6 +259,23 @@ public class SportsBettingServiceImpl implements SportsBettingService {
     @Override
     public void savePlayer(Player player) {
         this.loggedInUser = player;
+
+        /*Player tempPlayer = playerRepository.findPlayerByName(loggedInUser.getName());
+
+        tempPlayer.setBalance(loggedInUser.getBalance());
+        tempPlayer.setCurrency(loggedInUser.getCurrency());
+        tempPlayer.setPassword(loggedInUser.getPassword());
+        tempPlayer.setName(loggedInUser.getName());
+        tempPlayer.setAccountNumber(loggedInUser.getAccountNumber());
+        tempPlayer.setBirth(loggedInUser.getBirth());
+        tempPlayer.setEmail(loggedInUser.getEmail());
+
+        playerRepository.save(tempPlayer);*/
+    }
+
+    @Override
+    public void deleteWager(String id) {
+        wagerRepository.delete(wagerRepository.findById(Integer.parseInt(id)).get());
     }
 
     private WagerInfoHelper wagerInfoAdapter(Wager w){

@@ -82,4 +82,8 @@ public class WagerInfoHelper {
     public String getProcessed() {
         return processed;
     }
+
+    public boolean isProcessed() {
+        return !processed.equals("No");
+    }
 }
